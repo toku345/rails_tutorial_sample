@@ -6,11 +6,6 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
-# Configuration parameters: AllowComments, AllowEmptyLambdas.
-Lint/EmptyBlock:
-  Exclude:
-    - 'db/schema.rb'
-
 # Configuration parameters: IgnoredMethods.
 Metrics/CyclomaticComplexity:
   Max: 9
@@ -78,7 +73,6 @@ Style/FrozenStringLiteralComment:
     - 'config/puma.rb'
     - 'config/routes.rb'
     - 'config/spring.rb'
-    - 'db/schema.rb'
     - 'db/seeds.rb'
     - 'test/application_system_test_case.rb'
     - 'test/channels/application_cable/connection_test.rb'

@@ -12,6 +12,7 @@ AllCops:
     - "vendor/**/*"
     - "config/application.rb"
     - "Guardfile"
+    - "db/schema.rb"
     - "node_modules/**/*"
   DisplayCopNames: true
 
