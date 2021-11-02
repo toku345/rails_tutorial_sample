@@ -1,0 +1,19 @@
+inherit_from: .rubocop_todo.yml
+
+require:
+  - rubocop-rails
+  - rubocop-minitest
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  Exclude:
+    - "vendor/**/*"
+    - "config/application.rb"
+    - "Guardfile"
+    - "node_modules/**/*"
+  DisplayCopNames: true
+
+Style/Documentation:
+  Enabled: false
