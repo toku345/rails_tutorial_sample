@@ -218,6 +218,8 @@ GEM
       rubyzip (>= 1.2.2)
     shellany (0.0.1)
     spring (2.1.1)
+    spring-commands-rubocop (0.2.0)
+      spring (>= 1.0, < 3.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -283,6 +285,7 @@ DEPENDENCIES
   sass-rails (>= 6)
   selenium-webdriver
   spring
+  spring-commands-rubocop
   spring-watcher-listen (~> 2.0.0)
   sqlite3 (~> 1.4)
   turbolinks (~> 5)
