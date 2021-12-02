@@ -1,0 +1,59 @@
+name: Rails - Install dependencies and run linters and run tests
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+defaults:
+  run:
+    working-directory: ./sample_app
+jobs:
+  run-lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: Cache yarn
+        uses: actions/cache@v2
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
+      - name: Setup Node.js and
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14.18.1
+      - name: Install npm packages via yarn
+        run: yarn install --check-files
+
+      - name: Setup Ruby and install gems
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.0.3
+          bundler-cache: true
+          working-directory: ./sample_app
+
+      # Add or Replace any other security checks here
+      # - name: Run security checks
+      #   run: |
+      #     bin/bundler-audit --update
+      #     bin/brakeman -q -w2
+
+      - name: Run linters
+        run: |
+          bin/rubocop --parallel
+
+      - name: Run unit tests
+        run: |
+          bin/rails test
+      - name: Run integration tests
+        run: |
+          bin/rails test:integration
