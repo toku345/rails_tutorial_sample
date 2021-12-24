@@ -11,6 +11,20 @@ defaults:
 jobs:
   run-lint-and-test:
     runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD:
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -51,9 +65,26 @@ jobs:
         run: |
           bin/rubocop --parallel
 
+      - name: Prepare db
+        run: |
+          bin/rails db:create
+          bin/rails db:migrate
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+      - name: Execute seed-fu
+        run: |
+          bin/rails db:seed_fu
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
+
       - name: Run unit tests
         run: |
           bin/rails test
+        env:
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5432
       - name: Run integration tests
         run: |
           bin/rails test:integration
