@@ -8,6 +8,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'bootstrap-sass', '~> 3.4.1'
 gem 'jbuilder', '~> 2.7'
 gem 'nokogiri', '>= 1.12.5'
+gem 'pg', '~> 1.1'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.4', '>= 6.0.4.1'
 gem 'sass-rails', '>= 6'
@@ -20,7 +21,6 @@ group :development, :test do
   gem 'rubocop-minitest', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
-  gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
@@ -40,10 +40,6 @@ group :test do
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'webdrivers'
-end
-
-group :production do
-  gem 'pg', '~> 1.1'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
