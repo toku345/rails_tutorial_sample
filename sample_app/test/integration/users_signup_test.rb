@@ -16,5 +16,16 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       }
     end
     assert_template 'users/new'
+    assert_select 'div#error_explanation' do
+      assert_select 'div.alert.alert-danger', 'The form contains 4 counts.'
+      assert_select 'ul' do
+        assert_select 'li' do |elements|
+          assert_equal("Name can't be blank", elements[0].text)
+          assert_equal('Email is invalid', elements[1].text)
+          assert_equal("Password confirmation doesn't match Password", elements[2].text)
+          assert_equal('Password is too short (minimum is 6 characters)', elements[3].text)
+        end
+      end
+    end
   end
 end
