@@ -26,3 +26,7 @@ Minitest/MultipleAssertions:
 Naming/PredicateName:
   Exclude:
     - "test/test_helper.rb"
+
+Rails/HelperInstanceVariable:
+  Exclude:
+    - "app/helpers/sessions_helper.rb"
