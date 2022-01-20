@@ -22,3 +22,7 @@ Style/Documentation:
 Minitest/MultipleAssertions:
   Exclude:
     - "test/integration/**/*"
+
+Naming/PredicateName:
+  Exclude:
+    - "test/test_helper.rb"
