@@ -30,3 +30,7 @@ Naming/PredicateName:
 Rails/HelperInstanceVariable:
   Exclude:
     - "app/helpers/sessions_helper.rb"
+
+Rails/SkipsModelValidations:
+  Exclude:
+    - "test/**/*"
