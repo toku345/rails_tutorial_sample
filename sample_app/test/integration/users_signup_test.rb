@@ -17,7 +17,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
     end
     assert_template 'users/new'
     assert_select 'div#error_explanation' do
-      assert_select 'div.alert.alert-danger', 'The form contains 4 counts.'
+      assert_select 'div.alert.alert-danger', 'The form contains 4 errors.'
       assert_select 'ul' do
         assert_select 'li' do |elements|
           assert_equal("Name can't be blank", elements[0].text)
